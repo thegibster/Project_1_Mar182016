@@ -1,0 +1,64 @@
+
+.progressBar {
+width: 100px;
+    height: 100px;
+      animation-name: growProgessBar;
+      animation-duration 10s;
+      animation-fill-mode: forwards;
+      animation-play-state: paused;
+}
+
+@keyframes growProgressBar{
+      0% {
+            width: 0%;
+                    background-color: red;
+                  }
+      50% {
+        background-color: yellow;
+}
+100% {
+        width:88%;
+                background-color: green;
+              }
+}
+
+
+p {
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-play-state: paused;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+#moveme{
+  height: 200px;
+  width: 200px;
+  background-color: red;
+}
+
+#moveme{
+  animation-name:examlpeCLass ;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 2;
+}
+
+@keyframes examlpeCLass{
+      from {transform: translateX(0px);}
+      to{transform: translateX(500px);}
+
+}
+
+
+
