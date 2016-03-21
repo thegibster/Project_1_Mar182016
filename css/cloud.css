@@ -15,12 +15,21 @@ body{
   position: relative;
 }*/
 
+.spaceship{
+  width: 128px;
+  height: 128px;
+  position: absolute;
+  background: transparent url(../images/spaceship.png) 0 0 no-repeat;
+  animation: drift 5s .2s linear  both;
+  z-index: 100;
+}
+
 .missle{
   width: 250px;
   height: 200px;
   position: absolute;
   background: transparent url(../images/missle1.png) 0 0 no-repeat;
-  animation: drift 3s .2s linear infinite backwards;
+  animation: drift 3s .2s linear  backwards;
   z-index: 100;
 }
 .cloud{

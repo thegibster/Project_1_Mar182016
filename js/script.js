@@ -15,7 +15,7 @@ $('#startButton').click(function() {
 
   });
     gameContain.append('<div class="sprite"></div>');
-   gameContain.append( '<div class="missle"></div>');
+
 
    var trackMissle=$('.missle');
     $(document).on("click",function(){
@@ -25,6 +25,69 @@ $('#startButton').click(function() {
     // the position only appears after the button creates the div missle , else itll fail
 });
 });
+
+//This is where the missle is treated as an function of the spaceship but as a function to call for testing.
+ function removeMissle(){
+
+      $('.missle').remove();
+  }
+ function removeSprite(){
+      $('.sprite').remove();
+
+  }
+function theMissleLaunch (){
+  gameContain.append( '<div class="missle"></div>');
+  setTimeout(removeMissle,2000);
+
+}
+gameContain.append( '<div class="spaceship"></div>');
+var spaceShip = {
+  name:"The Falcon",
+  fire:theMissleLaunch,
+  moveMe: function(){
+    $(document).on("keyup", function(e){
+
+      if(e.keyCode==37){
+        $('.spaceship').animate({left: "-=1"}, 0); }
+      else if(e.keyCode==38){
+        $('.spaceship').animate({top: "-=1"}, 0);}
+      else if(e.keyCode==39){
+      $('.spaceship').animate({left: "+=1"}, 0);}
+      else if(e.keyCode==40){
+      $('.spaceship').animate({top: "+=1"}, 0);}
+})},
+ moveMeCont: function(){
+    $(document).on("keypress", function(e){
+       while(e.keyCode==37){
+        console.log("left key")
+
+        $('.spaceship').animate({left: "-=5"}, 0);}
+      while(e.keyCode==38){
+        $('.spaceship').animate({top: "-=5"}, 0);}
+      while(e.keyCode==39){
+      $('.spaceship').animate({left: "+=5"}, 0);}
+      while(e.keyCode==40){
+      $('.spaceship').animate({top: "+=5"}, 0);}
+    })
+}}
+
+
+
+var trackSpaceShip=$('.spaceship');
+    $(document).on("load",function(){
+    var x = trackSpaceShip.position();
+    console.log(x.left);
+    console.log(x.top);
+  });
+
+
+
+
+// End of missle obj funciton tester
+
+
+
+
 
 $(".sprite").on("animationend",function(){
     // do something here
@@ -37,10 +100,20 @@ document.addEventListener('keyup', function(e) {
      // key f = e.Keycode 70
 });
 $(document).on("keyup", function(e){
-  if(e.keyCode==70)
- { gameContain.append('<div class="sprite"></div>')}
+  if(e.keyCode==70){
+    gameContain.append('<div class="sprite"></div>');
+     setTimeout(removeSprite,800);
+  }
 });
-
+$(document).on("keyup", function(e){
+ { spaceShip.moveMe();}
+});
+$(document).on("keyup", function(e){
+  if(e.keyCode==77){
+    spaceShip.fire()
+    setTimeout(removeMissle,2000);
+  }
+});
 
 
 
@@ -74,7 +147,7 @@ $(document).on("keyup", function(e){
 
 
 
-
+// create instances of the objects and have the objects call upon themselves
 
 
 
