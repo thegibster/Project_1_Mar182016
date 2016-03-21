@@ -8,12 +8,13 @@
   margin-top:-120px;
   margin-left: -160px;
   position: absolute;
-  animation: walker 2s steps(20) ;
-  animation-fill-mode: both;
+  animation: kaboom 2s steps(20) ;
+  animation-fill-mode: forwards;
   z-index: 3;
 }
 
-@keyframes walker{
+@keyframes kaboom{
   0% {background-position: 0 ;}
-  100%{background-position:  -6400px;}
+  95%{background-position:  -6400px;}
+  100%{opacity: 0;}
 }
