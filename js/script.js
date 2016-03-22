@@ -6,8 +6,8 @@ gameContain.append('<div id="startScreen"><button id="startButton">Press To Star
 gameContain.append('<div class="sky"><div class="cloud fcloud01"></div><div class="cloud fcloud02"></div></div>');
 //gameContain.append('<div class="sprite"></div>')
 $('canvas').attr('id', 'myCanvas');
-canvas.width = 1000;
-canvas.height = 600;
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
 var c=document.getElementById("myCanvas");
 var ctx=c.getContext("2d");
 $('#startButton').click(function() {
@@ -44,6 +44,7 @@ gameContain.append( '<div class="spaceship"></div>');
 var spaceShip = {
   name:"The Falcon",
   fire:theMissleLaunch,
+  missiles: [],
   moveMe: function(){
     $(document).on("keyup", function(e){
 
