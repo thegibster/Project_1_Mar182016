@@ -1,0 +1,14 @@
+#container{
+  margin: 0 auto;
+  position: center;
+}
+canvas {
+    border: 10px #333 solid;
+    padding: 0;
+    margin: auto;
+    display: block;
+}
+canvas{
+  height: 700px;
+  width: 1200px;
+}
