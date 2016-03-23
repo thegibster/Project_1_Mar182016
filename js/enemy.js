@@ -24,27 +24,60 @@ allBadSpaceShips[3].y = 305;
 // };
 
 function BadSpaceship() {
+    this.x=0;
+    this.y=60;
     this.sprite = '/images/spaceshipBad.png';
+    this.speed_x=2;
 };
 
-BadSpaceship.prototype = new Spaceship();
-BadSpaceship.prototype.constructor = BadSpaceship;
+BadSpaceship.prototype.fire = function() {
+    theX= this.x;
+    theY=this.y;
+    missle.render();
+};
+// BadSpaceship.prototype = new Spaceship();
+// BadSpaceship.prototype.constructor = BadSpaceship;
 // Spaceship render draws the spaceship in x,y cordplane
 //BadSpaceship.prototype = inherit(Spaceship.prototype);
-BadSpaceship.render = function(xVar,yVar) {
+BadSpaceship.prototype.render = function(xVar,yVar) {
    var img = new Image();
    img.src = "images/spaceshipBad.png";
+   //console.log("img load in render finc")
    img.onload = function(){
+   // console.log("img load in bad space")
 
      ctx.drawImage(img,xVar||this.x,yVar||this.y);
    };
 };
 
 // Loop through all enmey spaceships and call thier rendering
-function loopBadSpaceShips(){
-  for(var count = 0;count < allBadSpaceShips;count++){
-    allBadSpaceShips[count].render();
+function loopBadSpaceShips(badx,bady){
+  for(var count = 0;count < allBadSpaceShips.length;count++){
+    //console.log(allBadSpaceShips[count]+ "haha"+allBadSpaceShips[count].x,allBadSpaceShips[count].y)
+    if(count %2==0){
+      badx+=60;bady+=70;
+      //allBadSpaceShips[count].update();
+      allBadSpaceShips[count].render(badx,bady);
+      badx+=20;bady+=70;
+     // allBadSpaceShips[count].update()
+    }
+      else{
+    allBadSpaceShips[count].render(badx,bady);
+    badx+=20;bady+=70;
+        }
   }
+
+}
+
+BadSpaceship.prototype.update= function(){
+
+     if (this.y >= 500) {
+        this.y = 0;
+        console.log("c")
+    } else {
+        this.x += this.speed_x * dt;
+        console.log("d",dt)
+    }
 }
 
 
