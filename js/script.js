@@ -1,155 +1,169 @@
 
-var canvas = document.createElement('canvas');
-var gameContain = $('#containTheGame');
-gameContain.append(canvas);
-gameContain.append('<div id="startScreen"><button id="startButton">Press To Start</button></div>');
-gameContain.append('<div class="sky"><div class="cloud fcloud01"></div><div class="cloud fcloud02"></div></div>');
-//gameContain.append('<div class="sprite"></div>')
-$('canvas').attr('id', 'myCanvas');
-canvas.width = CANVAS_WIDTH;
-canvas.height = CANVAS_HEIGHT;
-var c=document.getElementById("myCanvas");
-var ctx=c.getContext("2d");
-$('#startButton').click(function() {
-  $(this).hide('slow/400/fast', function() {
+var Enemy = function() {
 
-  });
-    gameContain.append('<div class="sprite"></div>');
+    this.x = 0;
+    this.y = 50;
+    this.sprite = 'images/rasteroid.png';
+    this.speed_x=0;
+};
+var loss = -1;
+var win = 0;
 
 
-   var trackMissle=$('.missle');
-    $(document).on("click",function(){
-    var x = trackMissle.position();
-    console.log(x.left);
-    console.log(x.top);
-    // the position only appears after the button creates the div missle , else itll fail
-});
-});
+Enemy.prototype.update = function(dt) {
 
-//This is where the missle is treated as an function of the spaceship but as a function to call for testing.
- function removeMissle(){
+    if (this.x >= 855) {
+        this.x = 0;
+    } else {
+        this.x += this.speed_x * dt;
+    }
 
-      $('.missle').remove();
-  }
- function removeSprite(){
-      $('.sprite').remove();
+    document.getElementById("Loss").innerHTML = 'Losses: ' + loss;
 
-  }
-function theMissleLaunch (){
-  gameContain.append( '<div class="missle"></div>');
-  setTimeout(removeMissle,2000);
+};
+Enemy.prototype.handleInput = function(dt) {
 
+
+};
+
+
+
+Enemy.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+var Player = function() {
+    this.x = 600;
+    this.y = 600;
+    this.sprite = 'images/rspaceship3d.png';
+
+};
+
+Player.prototype.update = function(dt) {
+    document.getElementById("Wins").innerHTML = 'Wins: ' + win;
+    if (this.y <= 30) {
+        win += 1;
+        alert('You have avoided the poison comets.');
+
+        // or reset method could go here
+        this.x = 500;
+        this.y = 400;
+        tool.y = 300;
+
+    }
+
+};
+Player.prototype.handleInput = function(dt) {
+
+    switch (dt) {
+
+        case 'up':
+            if (this.y > 0) {
+                if (this.y === 0) {
+                    alert('Congrats you have won');
+                    reset();
+
+                } else {
+                    {
+                        this.y -= 50;
+                    }
+                }
+            }
+            break;
+        case 'down':
+            if (this.y < 650) {
+                this.y += 50;
+            }
+            break;
+
+        case 'left':
+            if (this.x > 90) {
+                this.x -= 50;
+            }
+            break;
+        case 'right':
+            if (this.x <844) {
+                this.x += 50;
+            }
+            break;
+        default:
+            break;
+
+
+    }
+};
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+
+var Tool = function() {
+    this.x = 0;
+    this.y = 300;
+    this.sprite = 'images/sratAxe.png';
+    this.i = 0;
+    this.speed_x=80;
+
+};
+
+Tool.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+Tool.prototype.update = function(dt) {
+  if (this.x >= 855) {
+        this.x = 0;
+    } else {
+        this.x += this.speed_x * dt;
+    }
+
+    document.getElementById("Points").innerHTML = 'Weapons Collected: ' + itemsCollected;
+
+
+};
+var  count =0;
+var itemsCollected = 0;
+var allEnemies = [];
+var allCollectables = [];
+var length =3;
+for (var i = 0; i< length; i++){
+    allEnemies.push(new Enemy());
 }
-gameContain.append( '<div class="spaceship"></div>');
-var spaceShip = {
-  name:"The Falcon",
-  fire:theMissleLaunch,
-  missiles: [],
-  moveMe: function(){
-    $(document).on("keyup", function(e){
-
-      if(e.keyCode==37){
-        $('.spaceship').animate({left: "-=1"}, 0); }
-      else if(e.keyCode==38){
-        $('.spaceship').animate({top: "-=1"}, 0);}
-      else if(e.keyCode==39){
-      $('.spaceship').animate({left: "+=1"}, 0);}
-      else if(e.keyCode==40){
-      $('.spaceship').animate({top: "+=1"}, 0);}
-})},
- moveMeCont: function(){
-    $(document).on("keypress", function(e){
-       while(e.keyCode==37){
-        console.log("left key")
-
-        $('.spaceship').animate({left: "-=5"}, 0);}
-      while(e.keyCode==38){
-        $('.spaceship').animate({top: "-=5"}, 0);}
-      while(e.keyCode==39){
-      $('.spaceship').animate({left: "+=5"}, 0);}
-      while(e.keyCode==40){
-      $('.spaceship').animate({top: "+=5"}, 0);}
-    })
-}}
-
-
-
-var trackSpaceShip=$('.spaceship');
-    $(document).on("load",function(){
-    var x = trackSpaceShip.position();
-    console.log(x.left);
-    console.log(x.top);
-  });
-
-
-
-
-// End of missle obj funciton tester
-
-
-
-
-
-$(".sprite").on("animationend",function(){
-    // do something here
-    $(this).fadeOut("fast");
- });
-
+allEnemies[1].x = 0;
+allEnemies[1].y = 150;
+allEnemies[2].x = 0;
+allEnemies[2].y = 250;
+allEnemies[0].speed_x = 75;
+allEnemies[1].speed_x = 120;
+allEnemies[2].speed_x = 95;
+var player = new Player();
+var tool = new Tool();
+var glove = new Tool();
+var plasmaGun  = new Tool();
+glove.y =450;
+glove.x = 400;
+glove.speed_x=200;
+glove.sprite = 'images/sratGlv.png';
+plasmaGun.y=450;
+plasmaGun.x=500;
+plasmaGun.speed_x=120;
+plasmaGun.sprite ='images/sratPlas.png';
+allCollectables.push(tool);
+allCollectables.push(glove);
+allCollectables.push(plasmaGun);
 
 document.addEventListener('keyup', function(e) {
-     console.log(e.keyCode);
-     // key f = e.Keycode 70
+    var allowedKeys = {
+        37: 'left',
+        38: 'up',
+        39: 'right',
+        40: 'down'
+    };
+
+    player.handleInput(allowedKeys[e.keyCode]);
+
+    // console.log(e.keyCode);
+    console.log(player.x, player.y,"player");
+     console.log(allCollectables[1].x,allCollectables[1].y,"glove");
+    console.log(tool.x, tool.y,"tool");
 });
-$(document).on("keyup", function(e){
-  if(e.keyCode==70){
-    gameContain.append('<div class="sprite"></div>');
-     setTimeout(removeSprite,800);
-  }
-});
-$(document).on("keyup", function(e){
- { spaceShip.moveMe();}
-});
-$(document).on("keyup", function(e){
-  if(e.keyCode==77){
-    spaceShip.fire()
-    setTimeout(removeMissle,2000);
-  }
-});
-
-
-
-// var imageObj = new Image();
-//  imageObj.onload = function() {
-//   ctx.drawImage(imageObj, 0, 0);
-// };
-// imageObj.src = 'images/Slickback.jpg';
-
-// ctx.beginPath();
-// ctx.arc(75,75,90,0,2*Math.PI);
-// ctx.stroke();
-
-// function onMouseOver(evt){
-//   console.log(evt.pageX+" X cord");
-//   console.log(evt.pageY +" Y cord");
-// }
-// $(document).on("mousemove",onMouseOver);
-
-
-//window.addEventListener('resize', resizeCanvas, false);
-
-
-// function resizeCanvas() {
-//             canvas.width = window.innerWidth;
-//             //canvas.height = window.innerHeight;
-
-//     }
-// resizeCanvas();
-
-
-
-
-// create instances of the objects and have the objects call upon themselves
-
-
-
 
