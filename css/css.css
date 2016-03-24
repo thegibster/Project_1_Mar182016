@@ -1,0 +1,19 @@
+canvas{
+  display: block;
+  display: flex;
+  flex-align: center;
+  border-width: 5px;
+  border-color: red;
+  border-radius: 40px;
+  margin: 0 auto;
+}
+#topBar{
+  position: absolute;
+  float: right;
+  margin-left: 150px;
+  font-size: 15px;
+  align-items: center;
+  z-index: 3;
+  color: red;
+
+}

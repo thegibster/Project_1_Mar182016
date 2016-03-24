@@ -12,7 +12,7 @@ var win = 0;
 
 Enemy.prototype.update = function(dt) {
 
-    if (this.x >= 855) {
+    if (this.x >= 1150) {
         this.x = 0;
     } else {
         this.x += this.speed_x * dt;
@@ -60,8 +60,9 @@ Player.prototype.handleInput = function(dt) {
         case 'up':
             if (this.y > 0) {
                 if (this.y === 0) {
-                    alert('Congrats you have won');
-                    reset();
+                   // alert('Congrats you have won');
+                   // reset();
+                   console.log("meow")
 
                 } else {
                     {
@@ -110,7 +111,7 @@ Tool.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 Tool.prototype.update = function(dt) {
-  if (this.x >= 855) {
+  if (this.x >= 1150) {
         this.x = 0;
     } else {
         this.x += this.speed_x * dt;
@@ -139,11 +140,11 @@ var player = new Player();
 var tool = new Tool();
 var glove = new Tool();
 var plasmaGun  = new Tool();
-glove.y =450;
+glove.y =50;
 glove.x = 400;
 glove.speed_x=200;
 glove.sprite = 'images/sratGlv.png';
-plasmaGun.y=450;
+plasmaGun.y=150;
 plasmaGun.x=500;
 plasmaGun.speed_x=120;
 plasmaGun.sprite ='images/sratPlas.png';

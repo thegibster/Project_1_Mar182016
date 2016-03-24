@@ -8,7 +8,7 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 1200;
-    canvas.height = 806;
+    canvas.height = 780;
     doc.body.appendChild(canvas);
 
     function main() {
@@ -35,7 +35,7 @@ var Engine = (function(global) {
     }
 
     function checkCollisions() {
-      allCollectables.forEach(function(enemy){console.log(enemy.x,"x",enemy.y,"y")})
+      //allCollectables.forEach(function(enemy){console.log(enemy.x,"x",enemy.y,"y")})
         allEnemies.forEach(function(enemy) {
             while( ((enemy.y+50 <= player.x-50)&& (enemy.y+50 >= player.x-50) )&&
                   ((enemy.x <= player.x-50)&&(enemy.x >= player.x-50))
@@ -63,11 +63,12 @@ var Engine = (function(global) {
 
 
         { if(count < 3){
-            itemsCollected += 1;
+
             tool.update();
             tool.x = 0;
             tool.y = 1000;
             console.log("Oh ohhh you have tool collision");
+            itemsCollected += 1;
             count ++;
 
         }else{
@@ -78,7 +79,6 @@ var Engine = (function(global) {
 
       });
     }
-
 
 
     function update(dt) {
@@ -96,9 +96,6 @@ var Engine = (function(global) {
         allCollectables.forEach(function(tool) {
             tool.update(dt);
         });
-        // tool.update();
-        // plasmaGun.update();
-        // glove.update();
 
 
     }
@@ -107,25 +104,31 @@ var Engine = (function(global) {
     function render() {
 
         var rowImages = [
-                'images/routspace.png', // Top row is water
-                'images/routspace.png', // Row 1 of 3 of stone
-                'images/routspace.png', // Row 2 of 3 of stone
-                'images/routspace.png', // Row 3 of 3 of stone
-                'images/routspace.png', // Row 1 of 2 of grass
+                'images/routspace.png',
+                'images/routspace.png',
+                'images/routspace.png',
+                'images/routspace.png',
+                'images/routspace.png',
+                'images/routspace.png' ,
+                'images/routspace.png',
                 'images/routspace.png' ,
                 'images/routspace.png',
                 'images/routspace.png' ,
                 'images/routspace.png',
-                'images/routspace.png'// Row 2 of 2 of grass
+                'images/routspace.png' ,
+                'images/routspace.png',
+                'images/routspace.png' ,
+                'images/routspace.png',
+                'images/routspace.png' ,
+                'images/routspace.png',
+                'images/routspace.png' ,
+                'images/routspace.png',
+                'images/routspace.png'
             ],
-            numRows = 10,
-            numCols = 10,
+            numRows = 20,
+            numCols = 20,
             row, col;
 
-        /* Loop through the number of rows and columns we've defined above
-         * and, using the rowImages array, draw the correct image for that
-         * portion of the "grid"
-         */
         for (row = 0; row < numRows; row++) {
             for (col = 0; col < numCols; col++) {
 
