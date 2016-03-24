@@ -1,12 +1,14 @@
 #aniWrd{
-  margin-top: 350px;
+  /*margin-top: 350px;*/
+  height: 80%;
   width: 80%
   margin:12px;
   text-align: center;
-  perspective:800px;
+  perspective:1000px;
   font-size: 40px;
 }
 span{
+  margin-top: 350px;
   display: inline-block;
   margin-left: -20px;
   color: #77c6bc;

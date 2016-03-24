@@ -10,7 +10,7 @@
   width: 100%;
 
   background-color: black;
-  animation: initialPageGoByeBye 6s both;
+  animation: initialPageGoByeBye 3s 1s both;
 }
 #containTheGame{
    position: absolute;
@@ -38,7 +38,7 @@ background-color: red;
 
 #startScreen{
 top: 580px;
-animation: flyIn .8s linear, swipeView .2s ease-in;
+animation: flyIn 1s linear, swipeView .5s 3s ease-in;
 }
 
 @keyframes flyIn{
