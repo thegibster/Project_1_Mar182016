@@ -37,13 +37,15 @@ var Engine = (function(global) {
     function checkCollisions() {
       //allCollectables.forEach(function(enemy){console.log(enemy.x,"x",enemy.y,"y")})
         allEnemies.forEach(function(enemy) {
-            while( ((enemy.y+50 <= player.x-50)&& (enemy.y+50 >= player.x-50) )&&
-                  ((enemy.x <= player.x-50)&&(enemy.x >= player.x-50))
-              )
+            // while( ((enemy.y <= player.y+20)&& (enemy.y >= player.y-20) )&&
+            //       ((enemy.x <= player.x+20)&&(enemy.x >= player.x-20))
+            //console.log("should collision")
+            while( (enemy.x >= player.x-50 && enemy.x <=player.x+50)&&
+              (enemy.y >= player.y-50 && enemy.y <= player.y +50))
 
 
             {
-
+                console.log("should collision")
                 //console.log("Oh ohhh you have collision");
                 alert("You have been asteroid Smacked");
                 reset();

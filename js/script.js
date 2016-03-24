@@ -125,17 +125,35 @@ var  count =0;
 var itemsCollected = 0;
 var allEnemies = [];
 var allCollectables = [];
-var length =3;
-for (var i = 0; i< length; i++){
+var length =6;
+var asteroidsPool=600;
+var asteriodChangex=50;
+for (var i = 0; i<=length; i++){
     allEnemies.push(new Enemy());
+    allEnemies[i].x =asteriodChangex;
+    if(asteroidsPool<=0){
+      asteroidsPool=500;
+    }
+    else if(asteroidsPool>=100){
+      asteroidsPool-=100;
+    }
+
+    else{
+      asteroidsPool=600;
+    }
+    allEnemies[i].speed_x = asteroidsPool ;
+
+
+    console.log(i)
 }
-allEnemies[1].x = 0;
-allEnemies[1].y = 150;
-allEnemies[2].x = 0;
-allEnemies[2].y = 250;
-allEnemies[0].speed_x = 75;
-allEnemies[1].speed_x = 120;
-allEnemies[2].speed_x = 95;
+// allEnemies[1].x = 0;
+// allEnemies[1].y = 150;
+// allEnemies[2].x = 0;
+// allEnemies[2].y = 250;
+ allEnemies[5].speed_x = 475;
+allEnemies[4].speed_x = 420;
+ allEnemies[1].speed_x = 135;
+
 var player = new Player();
 var tool = new Tool();
 var glove = new Tool();
