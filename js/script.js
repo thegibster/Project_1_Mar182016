@@ -186,3 +186,11 @@ document.addEventListener('keyup', function(e) {
     console.log(tool.x, tool.y,"tool");
 });
 
+//remove animation stuff
+function removeThoseMations(){
+  $("#initialPage").remove();
+  $("#sprite").remove();
+  $("#aniWrd").remove();
+}
+
+setTimeout(removeThoseMations,4000)

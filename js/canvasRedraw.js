@@ -1,2 +1,0 @@
-var CANVAS_WIDTH = 1200;
-var CANVAS_HEIGHT = 600;

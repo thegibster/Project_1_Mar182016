@@ -40,8 +40,8 @@ var Engine = (function(global) {
             // while( ((enemy.y <= player.y+20)&& (enemy.y >= player.y-20) )&&
             //       ((enemy.x <= player.x+20)&&(enemy.x >= player.x-20))
             //console.log("should collision")
-            while( (enemy.x >= player.x-50 && enemy.x <=player.x+50)&&
-              (enemy.y >= player.y-50 && enemy.y <= player.y +50))
+            while( (enemy.x >= player.x-25 && enemy.x <=player.x+25)&&
+              (enemy.y <= player.y+55 && enemy.y >= player.y +55))
 
 
             {
