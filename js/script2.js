@@ -40,9 +40,23 @@ var Engine = (function(global) {
             // while( ((enemy.y <= player.y+20)&& (enemy.y >= player.y-20) )&&
             //       ((enemy.x <= player.x+20)&&(enemy.x >= player.x-20))
             //console.log("should collision")
-            while( (enemy.x >= player.x-25 && enemy.x <=player.x+25)&&
-              (enemy.y <= player.y+55 && enemy.y >= player.y +55))
+            // var BigTR = [player.x+50,player.y-50]
+            // var BigTL = [player.x-50,player.y-50]
+            // var BigBL = [player.x-50,player.y+50]
+            // var BigBR = [player.x+50,player.y+50]
+            // var SmallTR = [enemy.x+25,enemy.y-25]
+            // var SmallTL = [enemy.x-25,enemy.y-25]
+            // var SmallBL = [enemy.x-25,enemy.y+25]
+            // var SmallBR =[enemy.x+25,enemy.y+25]
+            while(
 
+             (( enemy.y >= player.y-45 && enemy.y <= player.y+45 )
+              && (enemy.x >= player.x-10 && enemy.x <= player.x+10 ))
+
+
+              )
+              // collision math need work
+              // and winlogic
 
             {
                 console.log("should collision")
@@ -61,21 +75,30 @@ var Engine = (function(global) {
 
       allCollectables.forEach(function(tool){
         if ((((tool.x <= player.x) && (tool.x >= player.x -50)) &&
-           (( tool.y >= player.y)&&(tool.y -20 >= player.y))) && count <3)
-
-
-        { if(count < 3){
+           (( tool.y >= player.y-40)&&(tool.y  >= player.y+40))) && count <3){
+          if(count < 3){
 
             tool.update();
             tool.x = 0;
             tool.y = 1000;
+            $('#meter'+clicked).hide('slow');
+            console.log("boom");
+            clicked--
             console.log("Oh ohhh you have tool collision");
             itemsCollected += 1;
-            count ++;
+            if(clicked <=1){
+              alert("You have won");
+              wayToGo();
+              win += 1;
+              reset();
+            }
 
-        }else{
+
+        }
+        else{
           return null;
           }
+          count ++;
       }
 
 
@@ -104,28 +127,28 @@ var Engine = (function(global) {
 
 
     function render() {
-
+        var saveSpace= 'images/routspace.png';
         var rowImages = [
-                'images/routspace.png',
-                'images/routspace.png',
-                'images/routspace.png',
-                'images/routspace.png',
-                'images/routspace.png',
-                'images/routspace.png' ,
-                'images/routspace.png',
-                'images/routspace.png' ,
-                'images/routspace.png',
-                'images/routspace.png' ,
-                'images/routspace.png',
-                'images/routspace.png' ,
-                'images/routspace.png',
-                'images/routspace.png' ,
-                'images/routspace.png',
-                'images/routspace.png' ,
-                'images/routspace.png',
-                'images/routspace.png' ,
-                'images/routspace.png',
-                'images/routspace.png'
+                saveSpace,
+                saveSpace,
+                saveSpace,
+                saveSpace,
+                saveSpace,
+                saveSpace ,
+                saveSpace,
+                saveSpace ,
+                saveSpace,
+                saveSpace ,
+                saveSpace,
+                saveSpace ,
+                saveSpace,
+                saveSpace ,
+                saveSpace,
+                saveSpace ,
+                saveSpace,
+                saveSpace ,
+                saveSpace,
+                saveSpace
             ],
             numRows = 20,
             numCols = 20,
@@ -152,6 +175,7 @@ var Engine = (function(global) {
         tool.render();
         plasmaGun.render();
         glove.render();
+        blaster.render();
     }
 
     function reset() {
@@ -185,7 +209,8 @@ var Engine = (function(global) {
         'images/routspace.png',
         'images/sratPlas.png',
         'images/sratAxe.png',
-        'images/sratGlv.png'
+        'images/sratGlv.png',
+        'images/sratblast.png'
 
     ]);
     Resources.onReady(init);

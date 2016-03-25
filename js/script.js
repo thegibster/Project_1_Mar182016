@@ -41,14 +41,14 @@ var Player = function() {
 
 Player.prototype.update = function(dt) {
     document.getElementById("Wins").innerHTML = 'Wins: ' + win;
-    if (this.y <= 30) {
-        win += 1;
-        alert('You have avoided the poison comets.');
+    if (this.y <= 0) {
+        //win += 1;
+        console.log('You have avoided the poison comets.');
 
         // or reset method could go here
-        this.x = 500;
-        this.y = 400;
-        tool.y = 300;
+        // this.x = 500;
+        // this.y = 400;
+        // tool.y = 300;
 
     }
 
@@ -67,6 +67,7 @@ Player.prototype.handleInput = function(dt) {
                 } else {
                     {
                         this.y -= 50;
+                        PlaySound();
                     }
                 }
             }
@@ -83,7 +84,7 @@ Player.prototype.handleInput = function(dt) {
             }
             break;
         case 'right':
-            if (this.x <844) {
+            if (this.x <1100) {
                 this.x += 50;
             }
             break;
@@ -117,7 +118,7 @@ Tool.prototype.update = function(dt) {
         this.x += this.speed_x * dt;
     }
 
-    document.getElementById("Points").innerHTML = 'Weapons Collected: ' + itemsCollected;
+    document.getElementById("Points").innerHTML = 'Weapons Remain: ' + itemsCollected;
 
 
 };
@@ -158,7 +159,10 @@ var player = new Player();
 var tool = new Tool();
 var glove = new Tool();
 var plasmaGun  = new Tool();
-glove.y =50;
+var blaster = new Tool();
+tool.x= 600;
+tool.y= 475;
+glove.y =70;
 glove.x = 400;
 glove.speed_x=200;
 glove.sprite = 'images/sratGlv.png';
@@ -166,9 +170,14 @@ plasmaGun.y=150;
 plasmaGun.x=500;
 plasmaGun.speed_x=120;
 plasmaGun.sprite ='images/sratPlas.png';
+blaster.sprite = 'images/sratblast.png';
+blaster.speed_x=145;
+blaster.y = 300;
+blaster.x= 700;
 allCollectables.push(tool);
 allCollectables.push(glove);
 allCollectables.push(plasmaGun);
+allCollectables.push(blaster);
 
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
@@ -188,9 +197,11 @@ document.addEventListener('keyup', function(e) {
 
 //remove animation stuff
 function removeThoseMations(){
+  $('#boomSound').remove();
   $("#initialPage").remove();
   $("#sprite").remove();
   $("#aniWrd").remove();
+  $('body').prepend('<audio src="sounds/SpaceInvaders.mp3" autoplay></audio>');
 }
 
 setTimeout(removeThoseMations,4000)
