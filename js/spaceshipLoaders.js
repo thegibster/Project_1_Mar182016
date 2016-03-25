@@ -1,4 +1,3 @@
-
 (function() {
     var resourceCache = {};
     var loading = [];
@@ -6,7 +5,7 @@
 
 
     function load(urlOrArr) {
-        if(urlOrArr instanceof Array) {
+        if (urlOrArr instanceof Array) {
 
             urlOrArr.forEach(function(url) {
                 _load(url);
@@ -18,7 +17,7 @@
     }
 
     function _load(url) {
-        if(resourceCache[url]) {
+        if (resourceCache[url]) {
 
             return resourceCache[url];
         } else {
@@ -29,8 +28,10 @@
                 resourceCache[url] = img;
 
 
-                if(isReady()) {
-                    readyCallbacks.forEach(function(func) { func(); });
+                if (isReady()) {
+                    readyCallbacks.forEach(function(func) {
+                        func();
+                    });
                 }
             };
 
@@ -42,14 +43,14 @@
 
     //cache buffering to reduce repetative calls for space background
     function get(url) {
-        return resourceCache[url];
-    }
-// waits for images to load then runs
+            return resourceCache[url];
+        }
+        // waits for images to load then runs
     function isReady() {
         var ready = true;
-        for(var k in resourceCache) {
-            if(resourceCache.hasOwnProperty(k) &&
-               !resourceCache[k]) {
+        for (var k in resourceCache) {
+            if (resourceCache.hasOwnProperty(k) &&
+                !resourceCache[k]) {
                 ready = false;
             }
         }

@@ -1,4 +1,3 @@
-
 var Engine = (function(global) {
 
     var doc = global.document,
@@ -35,7 +34,7 @@ var Engine = (function(global) {
     }
 
     function checkCollisions() {
-      //allCollectables.forEach(function(enemy){console.log(enemy.x,"x",enemy.y,"y")})
+        //allCollectables.forEach(function(enemy){console.log(enemy.x,"x",enemy.y,"y")})
         allEnemies.forEach(function(enemy) {
             // while( ((enemy.y <= player.y+20)&& (enemy.y >= player.y-20) )&&
             //       ((enemy.x <= player.x+20)&&(enemy.x >= player.x-20))
@@ -48,19 +47,18 @@ var Engine = (function(global) {
             // var SmallTL = [enemy.x-25,enemy.y-25]
             // var SmallBL = [enemy.x-25,enemy.y+25]
             // var SmallBR =[enemy.x+25,enemy.y+25]
-            while(
+            while (
 
-             (( enemy.y >= player.y-45 && enemy.y <= player.y+45 )
-              && (enemy.x >= player.x-10 && enemy.x <= player.x+10 ))
+                ((enemy.y >= player.y - 45 && enemy.y <= player.y + 45) && (enemy.x >= player.x - 10 && enemy.x <= player.x + 10))
 
 
-              )
-              // collision math need work
-              // and winlogic
+            )
+            // collision math need work
+            // and winlogic
 
             {
                 console.log("should collision")
-                //console.log("Oh ohhh you have collision");
+                    //console.log("Oh ohhh you have collision");
                 alert("You have been asteroid Smacked");
                 reset();
                 break;
@@ -73,36 +71,35 @@ var Engine = (function(global) {
 
     function toolCollision() {
 
-      allCollectables.forEach(function(tool){
-        if ((((tool.x <= player.x) && (tool.x >= player.x -50)) &&
-           (( tool.y >= player.y-40)&&(tool.y  >= player.y+40))) && count <3){
-          if(count < 3){
+        allCollectables.forEach(function(tool) {
+            if ((((tool.x <= player.x) && (tool.x >= player.x - 50)) &&
+                    ((tool.y >= player.y - 40) && (tool.y >= player.y + 40))) && count < 3) {
+                if (count < 3) {
 
-            tool.update();
-            tool.x = 0;
-            tool.y = 1000;
-            $('#meter'+clicked).hide('slow');
-            console.log("boom");
-            clicked--
-            console.log("Oh ohhh you have tool collision");
-            itemsCollected += 1;
-            if(clicked <=1){
-              alert("You have won");
-              wayToGo();
-              win += 1;
-              reset();
+                    tool.update();
+                    tool.x = 0;
+                    tool.y = 1000;
+                    $('#meter' + clicked).hide('slow');
+                    console.log("boom");
+                    clicked--
+                    console.log("Oh ohhh you have tool collision");
+                    itemsCollected += 1;
+                    if (clicked <= 1) {
+                        alert("You have won");
+                        wayToGo();
+                        win += 1;
+                        reset();
+                    }
+
+
+                } else {
+                    return null;
+                }
+                count++;
             }
 
 
-        }
-        else{
-          return null;
-          }
-          count ++;
-      }
-
-
-      });
+        });
     }
 
 
@@ -127,26 +124,26 @@ var Engine = (function(global) {
 
 
     function render() {
-        var saveSpace= 'images/routspace.png';
+        var saveSpace = 'images/routspace.png';
         var rowImages = [
                 saveSpace,
                 saveSpace,
                 saveSpace,
                 saveSpace,
                 saveSpace,
-                saveSpace ,
                 saveSpace,
-                saveSpace ,
                 saveSpace,
-                saveSpace ,
                 saveSpace,
-                saveSpace ,
                 saveSpace,
-                saveSpace ,
                 saveSpace,
-                saveSpace ,
                 saveSpace,
-                saveSpace ,
+                saveSpace,
+                saveSpace,
+                saveSpace,
+                saveSpace,
+                saveSpace,
+                saveSpace,
+                saveSpace,
                 saveSpace,
                 saveSpace
             ],

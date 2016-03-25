@@ -1,21 +1,25 @@
-.sprite{
-  width: 250px;
-  height: 150px;
-  display: block;
-  top:50%;
-  left:50%;
-  background-image : url("../images/bomber.png");
-  margin-top:-120px;
-  margin-left: -160px;
-  position: absolute;
-  animation: kaboom 2s steps(20) ;
-  animation-fill-mode: forwards;
-  z-index: 3;
+.sprite {
+    width: 250px;
+    height: 150px;
+    display: block;
+    top: 50%;
+    left: 50%;
+    background-image: url("../images/bomber.png");
+    margin-top: -120px;
+    margin-left: -160px;
+    position: absolute;
+    animation: kaboom 2s steps(20);
+    animation-fill-mode: forwards;
+    z-index: 3;
 }
-
-@keyframes kaboom{
-  0% {background-position: 0 ;}
-  95%{background-position:  -6400px;}
-  100%{opacity: 0;}
+@keyframes kaboom {
+    0% {
+        background-position: 0;
+    }
+    95% {
+        background-position: -6400px;
+    }
+    100% {
+        opacity: 0;
+    }
 }
-

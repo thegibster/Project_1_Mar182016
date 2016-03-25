@@ -1,74 +1,64 @@
-
-#container{
-    margin-left:auto;
-    margin-right:auto;
-    width:1200px;
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
     position: fixed;
 }
-#initialPage{
-  height: 800px;
-  width: 100%;
-
-  background-color: black;
-  animation: initialPageGoByeBye 3s 1s both;
+#initialPage {
+    height: 800px;
+    width: 100%;
+    background-color: black;
+    animation: initialPageGoByeBye 3s 1s both;
 }
-#containTheGame{
-   position: absolute;
+#containTheGame {
+    position: absolute;
     margin: 0 auto;
-    margin-left:200px ;
-    margin-right:200px;
+    margin-left: 200px;
+    margin-right: 200px;
     margin-top: 40px;
     height: 600px;
     width: 90%;
 }
-
-#startScreen{
-
-
-   position: absolute;
+#startScreen {
+    position: absolute;
     margin: 0 auto;
     z-index: 2;
 }
-
-#startScreen{
-top: 580px;
-animation: flyIn 1s linear, swipeView .5s 3s ease-in;
+#startScreen {
+    top: 580px;
+    animation: flyIn 1s linear, swipeView .5s 3s ease-in;
 }
-
-@keyframes flyIn{
-  0% {
-    transform: translateY(400px);
-    animation-timing-function: ease-out;
-  }
-  60% {
-    transform: translateY(-50px);
-    animation-timing-function: ease-in;
-  }
-  80% {
-    transform: translateY(10px);
-    animation-timing-function: ease-out;
-  }
-  100% {
-    transform: translateY(0);
-    animation-timing-function: ease-in;
-  }
+@keyframes flyIn {
+    0% {
+        transform: translateY(400px);
+        animation-timing-function: ease-out;
+    }
+    60% {
+        transform: translateY(-50px);
+        animation-timing-function: ease-in;
+    }
+    80% {
+        transform: translateY(10px);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translateY(0);
+        animation-timing-function: ease-in;
+    }
 }
-
 @keyframes swipeView {
-  from{opacity: 0;}
-  to{opacity: 1;}
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
-
-@keyframes initialPageGoByeBye{
-   from{opacity: 1;}
-  to{opacity: 0;}
+@keyframes initialPageGoByeBye {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
-
-
-
-
-
-
-
-
-

@@ -1,10 +1,9 @@
-
 var Enemy = function() {
 
     this.x = 0;
     this.y = 50;
     this.sprite = 'images/rasteroid.png';
-    this.speed_x=0;
+    this.speed_x = 0;
 };
 var loss = -1;
 var win = 0;
@@ -60,9 +59,9 @@ Player.prototype.handleInput = function(dt) {
         case 'up':
             if (this.y > 0) {
                 if (this.y === 0) {
-                   // alert('Congrats you have won');
-                   // reset();
-                   console.log("meow")
+                    // alert('Congrats you have won');
+                    // reset();
+                    console.log("meow")
 
                 } else {
                     {
@@ -84,7 +83,7 @@ Player.prototype.handleInput = function(dt) {
             }
             break;
         case 'right':
-            if (this.x <1100) {
+            if (this.x < 1100) {
                 this.x += 50;
             }
             break;
@@ -104,7 +103,7 @@ var Tool = function() {
     this.y = 300;
     this.sprite = 'images/sratAxe.png';
     this.i = 0;
-    this.speed_x=80;
+    this.speed_x = 80;
 
 };
 
@@ -112,7 +111,7 @@ Tool.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 Tool.prototype.update = function(dt) {
-  if (this.x >= 1150) {
+    if (this.x >= 1150) {
         this.x = 0;
     } else {
         this.x += this.speed_x * dt;
@@ -122,27 +121,24 @@ Tool.prototype.update = function(dt) {
 
 
 };
-var  count =0;
+var count = 0;
 var itemsCollected = 0;
 var allEnemies = [];
 var allCollectables = [];
-var length =6;
-var asteroidsPool=600;
-var asteriodChangex=50;
-for (var i = 0; i<=length; i++){
+var length = 6;
+var asteroidsPool = 600;
+var asteriodChangex = 50;
+for (var i = 0; i <= length; i++) {
     allEnemies.push(new Enemy());
-    allEnemies[i].x =asteriodChangex;
-    if(asteroidsPool<=0){
-      asteroidsPool=500;
+    allEnemies[i].x = asteriodChangex;
+    if (asteroidsPool <= 0) {
+        asteroidsPool = 500;
+    } else if (asteroidsPool >= 100) {
+        asteroidsPool -= 100;
+    } else {
+        asteroidsPool = 600;
     }
-    else if(asteroidsPool>=100){
-      asteroidsPool-=100;
-    }
-
-    else{
-      asteroidsPool=600;
-    }
-    allEnemies[i].speed_x = asteroidsPool ;
+    allEnemies[i].speed_x = asteroidsPool;
 
 
     console.log(i)
@@ -151,29 +147,29 @@ for (var i = 0; i<=length; i++){
 // allEnemies[1].y = 150;
 // allEnemies[2].x = 0;
 // allEnemies[2].y = 250;
- allEnemies[5].speed_x = 475;
+allEnemies[5].speed_x = 475;
 allEnemies[4].speed_x = 420;
- allEnemies[1].speed_x = 135;
+allEnemies[1].speed_x = 135;
 
 var player = new Player();
 var tool = new Tool();
 var glove = new Tool();
-var plasmaGun  = new Tool();
+var plasmaGun = new Tool();
 var blaster = new Tool();
-tool.x= 600;
-tool.y= 475;
-glove.y =70;
+tool.x = 600;
+tool.y = 475;
+glove.y = 70;
 glove.x = 400;
-glove.speed_x=200;
+glove.speed_x = 200;
 glove.sprite = 'images/sratGlv.png';
-plasmaGun.y=150;
-plasmaGun.x=500;
-plasmaGun.speed_x=120;
-plasmaGun.sprite ='images/sratPlas.png';
+plasmaGun.y = 150;
+plasmaGun.x = 500;
+plasmaGun.speed_x = 120;
+plasmaGun.sprite = 'images/sratPlas.png';
 blaster.sprite = 'images/sratblast.png';
-blaster.speed_x=145;
+blaster.speed_x = 145;
 blaster.y = 300;
-blaster.x= 700;
+blaster.x = 700;
 allCollectables.push(tool);
 allCollectables.push(glove);
 allCollectables.push(plasmaGun);
@@ -190,18 +186,18 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 
     // console.log(e.keyCode);
-    console.log(player.x, player.y,"player");
-     console.log(allCollectables[1].x,allCollectables[1].y,"glove");
-    console.log(tool.x, tool.y,"tool");
+    console.log(player.x, player.y, "player");
+    console.log(allCollectables[1].x, allCollectables[1].y, "glove");
+    console.log(tool.x, tool.y, "tool");
 });
 
 //remove animation stuff
-function removeThoseMations(){
-  $('#boomSound').remove();
-  $("#initialPage").remove();
-  $("#sprite").remove();
-  $("#aniWrd").remove();
-  $('body').prepend('<audio src="sounds/SpaceInvaders.mp3" autoplay></audio>');
+function removeThoseMations() {
+    $('#boomSound').remove();
+    $("#initialPage").remove();
+    $("#sprite").remove();
+    $("#aniWrd").remove();
+    $('body').prepend('<audio src="sounds/SpaceInvaders.mp3" autoplay></audio>');
 }
 
-setTimeout(removeThoseMations,4000)
+setTimeout(removeThoseMations, 4000)
