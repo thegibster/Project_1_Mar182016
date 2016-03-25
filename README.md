@@ -9,11 +9,12 @@ SpaceBlasting for Andrew Gibbs
 ## Game Play:
 
 * Use the `directional keys` to move the character `left`,`right`, `up` or `down`.
-* 
+* Up key  cause blast sound
 * 
 * To completely reset the game and counters, use the refresh button of the browser.
 
 ## The other Counters
  The win and loss counters increase for every win or loss.
 
-
+## Known Bugs/Issue
+1. Collision dimensional detection somestimes is off.
